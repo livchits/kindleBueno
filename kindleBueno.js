@@ -9,7 +9,7 @@ class Kindle {
   }
 
   add(eBook) { 
-    if (_exists(eBook)) {
+    if (this._exists(eBook)) {
       console.warn(`"${eBook.title}" already exists in library`);
       return;
     }
@@ -24,7 +24,7 @@ class Kindle {
 
     this._library.push(eBook);
 
-    _updateNotReadYetBooks();
+    this._updateNotReadYetBooks();
   }
 
   _exists(eBook) {
