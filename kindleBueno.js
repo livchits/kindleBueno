@@ -8,7 +8,37 @@ class Kindle {
     this._library = [];
   }
 
-  add(eBook) { }
+  add(eBook) { 
+    if (_exists(eBook)) {
+      console.warn(`"${eBook.title}" already exists in library`);
+      return;
+    }
+
+    if (this._library.length === 0) {
+      this._current = eBook;
+    }
+
+    if (this._library.length === 1) {
+      this._next = eBook;
+    }
+
+    this._library.push(eBook);
+
+    _updateNotReadYetBooks();
+  }
+
+  _exists(eBook) {
+    return this._library.find(libraryBook => libraryBook.title === eBook.title && libraryBook.author === eBook.title) ? true : false;
+  }
+
+  _updateNotReadYetBooks() {
+    this.notReadYetBooks = this._library.reduce((totalBooksNotRead, currentBook) => {
+      if (!currentBook.read) {
+        totalBooksNotRead++;
+      }
+      return totalBooksNotRead;
+    }, 0);
+  }
 
   finishCurrentBook() { }
 
