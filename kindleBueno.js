@@ -24,7 +24,16 @@ class Kindle {
 
   search(keywords) { }
 
-  sortBy(criteria) { }
+  sortBy(criteria) {
+    const sortedArray = [...this._library];
+    const sortCriteria = (bookA, bookB) => bookA[criteria].localeCompare(bookB[criteria]);
+
+    if (criteria === 'author' || criteria === 'title') {
+      return sortedArray.sort(sortCriteria);
+    }
+
+    return console.warn('Criteria must be either "author" or "title"');
+  }
 }
 
 class Ebook {
