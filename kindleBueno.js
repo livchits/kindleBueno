@@ -58,13 +58,21 @@ class Kindle {
 }
 
 class Ebook {
-  constructor(title, author, genre, cover) {
+  constructor({ title, author, genre, cover }) {
     this.title = title;
     this.author = author;
     this.genre = genre;
     this.cover = cover;
-    this.read = false;
-    this.readDate = null;
+    this._read = false;
+    this._readDate = null;
+  }
+
+  get read() {
+    return this._read;
+  }
+
+  get readDate() {
+    return this._readDate;
   }
 
   static isEqual(eBookA, eBookB) {
