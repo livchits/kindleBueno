@@ -85,6 +85,6 @@ class Ebook {
   }
 
   static isEqual(eBookA, eBookB) {
-    return eBookA.title === eBookB.title && eBookA.author === eBookB.author;
+    return eBookA.title === eBookB.title && eBookA.author === eBookB.author && eBookA.genre === eBookB.genre;
   }
 }
