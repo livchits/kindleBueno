@@ -84,7 +84,7 @@ class Kindle {
   filterBy(criteria) { }
 
   search(keywords) {
-    return this._library.filter(eBook=>eBook.title.toLowerCase().includes(keywords.toLowerCase()) || eBook.author.toLowerCase().includes(keywords.toLowerCase()));
+    return this._library.filter(eBook => eBook.title.toLowerCase().includes(keywords.toLowerCase()) || eBook.author.toLowerCase().includes(keywords.toLowerCase()));
   }
 
   sortBy(criteria) {
@@ -105,16 +105,8 @@ class Ebook {
     this.author = author;
     this.genre = genre;
     this.cover = cover;
-    this._read = false;
-    this._readDate = null;
-  }
-
-  get read() {
-    return this._read;
-  }
-
-  get readDate() {
-    return this._readDate;
+    this.read = false;
+    this.readDate = null; 
   }
 
   static isEqual(eBookA, eBookB) {
