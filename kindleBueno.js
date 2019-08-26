@@ -28,7 +28,7 @@ class Kindle {
   }
 
   _exists(eBook) {
-    return this._library.find(libraryBook => libraryBook.title === eBook.title && libraryBook.author === eBook.title) ? true : false;
+    return this._library.find(libraryBook => libraryBook.title === eBook.title && libraryBook.author === eBook.title && libraryBook.genre === eBook.genre) ? true : false;
   }
 
   _updateNotReadYetBooks() {
