@@ -52,7 +52,9 @@ class Kindle {
 
   filterBy(criteria) { }
 
-  search(keywords) { }
+  search(keywords) {
+    return this._library.filter(eBook=>eBook.title.toLowerCase().includes(keywords.toLowerCase()) || eBook.author.toLowerCase().includes(keywords.toLowerCase()));
+  }
 
   sortBy(criteria) {
     const sortedArray = [...this._library];
