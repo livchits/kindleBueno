@@ -50,7 +50,10 @@ class Kindle {
   }
 
   finishCurrentBook() {
-    if (this._current === null) console.error('There is no current book to finish, you must add one first.');
+    if (this._current === null) {
+      console.error('There is no current book to finish, you must add one first.');
+      return;
+    }
     this._current._read = true;
     this._current._readDate = Date.now();
     this._last = this._current;
