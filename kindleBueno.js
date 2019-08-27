@@ -40,7 +40,28 @@ class Kindle {
     }, 0);
   }
 
-  finishCurrentBook() { }
+  _updateReadBooks() {
+    this.readBooks = this._library.reduce((totalBooksRead, currentBook) => {
+      if (currentBook._read) {
+        totalBooksRead++;
+      }
+      return totalBooksRead;
+    }, 0)
+  }
+
+  finishCurrentBook() {
+    if (this._current === null) {
+      console.error('There is no current book to finish, you must add one first.');
+      return;
+    }
+    this._current._read = true;
+    this._current._readDate = Date.now();
+    this._last = this._current;
+    this._current = this._next;
+    this._next = this.library.find(eBooK => eBooK._read === false && !Ebook.isEqual(eBooK, this._current));
+    this._updateReadBooks;
+    this._updateNotReadYetBooks;
+  }
 
   get library() { }
 
