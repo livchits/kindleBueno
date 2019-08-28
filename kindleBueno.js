@@ -28,7 +28,7 @@ class Kindle {
   }
 
   _exists(eBook) {
-    return this._library.some(kindleBook => kindleBook.isEqual(eBook));
+    return this._library.some(kindleBook => Ebook.isEqual(kindleBook, eBook));
   }
 
   _updateNotReadYetBooks() {
