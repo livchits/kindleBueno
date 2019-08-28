@@ -75,7 +75,7 @@ class Kindle {
       return;
     }
 
-    if (!eBook.isEqual(this.currentEBook)) {
+    if (!Ebook.isEqual(eBook, this.currentEBook)) {
       this._next = this._current;
       this._current = eBook;
     }
