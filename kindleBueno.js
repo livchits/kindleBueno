@@ -69,7 +69,17 @@ class Kindle {
 
   get currentEBook() { }
 
-  set currentEBook() { }
+  set currentEBook(eBook) {
+    if (!this._exists(eBook)) {
+      console.warn(`"${eBook.title}" does not exists in library`);
+      return;
+    }
+
+    if (!eBook.isEqual(this.currentEBook)) {
+      this._next = this._current;
+      this._current = eBook;
+    }
+  }
 
   filterBy(criteria) { }
 
