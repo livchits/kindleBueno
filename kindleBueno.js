@@ -74,7 +74,12 @@ class Kindle {
   filterBy(criteria) { }
 
   search(keywords) {
-    return this._library.filter(eBook=>eBook.title.toLowerCase().includes(keywords.toLowerCase()) || eBook.author.toLowerCase().includes(keywords.toLowerCase()));
+    const searchKeywords = keywords.toLowerCase().trim();
+    const result = this._library.filter(eBook => {
+      eBook.title.toLowerCase().includes(searchKeywords) || eBook.author.toLowerCase().includes(searchKeywords)
+    });
+    
+    return result.length > 0 ? result : console.log('There are no results found in your library');
   }
 
   sortBy(criteria) {
