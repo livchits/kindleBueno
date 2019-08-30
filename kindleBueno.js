@@ -98,7 +98,7 @@ class Kindle {
   }
   
   get recentSearches() {
-    return this._recentSearches();
+    return this._recentSearches;
   }
 }
 
