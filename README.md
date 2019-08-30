@@ -86,7 +86,14 @@
 - `.search(keywords)`: retorna un _array_ de los eBooks que incluyan las _keywords_ en `title` o `author`, sin importar si están en mayúscula o minúscula (no es _case sensitive_). En el caso de que no haya resultados, se debe mostrar el siguiente mensaje en consola: 'There are no results found in your library'. Nota: los espacios al principio y al final de keywords deben ignorarse.
 
 ### 12. *sortBy(criteria)*  
-- `sortBy(criteria)`: retorna un _array_ de los _eBooks_ ordenado (de forma ascendente) por `title` o `author`, según si se recibe el _string_ `'title'` o `'author'` como parámetro
+- `sortBy(criteria)`: retorna un _array_ de los _eBooks_ ordenado (de forma ascendente) por `title` o `author`, según si se recibe el _string_ `'title'` o `'author'` como parámetro.
+
+### 13. *recentSearches()*
+- `recentSearches()`: muestra las últimas 5 búsquedas realizadas usando .search.
+
+### 14. *clearHistory()*
+- `clearHistory()`: limpia las búsquedas recientes.
+
 
 ## Observaciones
 
