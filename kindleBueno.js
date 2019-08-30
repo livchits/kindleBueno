@@ -6,6 +6,7 @@ class Kindle {
     this._next = null;
     this._last = null;
     this._library = [];
+    this._recentSearches = [];
   }
 
   add(eBook) { 
