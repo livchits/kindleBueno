@@ -80,6 +80,9 @@ class Kindle {
       eBook.title.toLowerCase().includes(searchKeywords) || eBook.author.toLowerCase().includes(searchKeywords)
     });
     
+    this._recentSearches.push(searchKeywords);
+    if (this._recentSearches.length > 5) this._recentSearches.shift(); 
+    
     return result.length > 0 ? result : console.log('There are no results found in your library');
   }
 
