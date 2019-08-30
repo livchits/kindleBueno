@@ -96,6 +96,10 @@ class Kindle {
 
     return console.warn('Criteria must be either "author" or "title"');
   }
+  
+  get recentSearches() {
+    return this._recentSearches();
+  }
 }
 
 class Ebook {
