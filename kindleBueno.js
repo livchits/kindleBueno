@@ -89,7 +89,15 @@ class Kindle {
     }
   }
 
-  filterBy(criteria) {}
+  filterBy(criteria) {    
+    if (criteria === 'read'){
+	return this._library.filter(eBook=>eBook.read);
+    }else if(criteria === 'unread'){
+	return this._library.filter(eBook=>!eBook.read);
+    }else{
+	return console.warn('Criteria must be either "You have no items that match the selected filters"');
+   }
+}
 
   search(keywords) {
     const searchKeywords = keywords.toLowerCase().trim();
