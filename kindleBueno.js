@@ -6,6 +6,7 @@ class Kindle {
     this._next = null;
     this._last = null;
     this._library = [];
+    this._recentSearches = [];
   }
 
   add(eBook) { 
@@ -84,7 +85,15 @@ class Kindle {
   filterBy(criteria) { }
 
   search(keywords) {
-    return this._library.filter(eBook => eBook.title.toLowerCase().includes(keywords.toLowerCase()) || eBook.author.toLowerCase().includes(keywords.toLowerCase()));
+    const searchKeywords = keywords.toLowerCase().trim();
+    const result = this._library.filter(eBook => {
+      eBook.title.toLowerCase().includes(searchKeywords) || eBook.author.toLowerCase().includes(searchKeywords)
+    });
+    
+    this._recentSearches.push(searchKeywords);
+    if (this._recentSearches.length > 5) this._recentSearches.shift(); 
+    
+    return result.length > 0 ? result : console.log('There are no results found in your library');
   }
 
   sortBy(criteria) {
@@ -96,6 +105,10 @@ class Kindle {
     }
 
     return console.warn('Criteria must be either "author" or "title"');
+  }
+  
+  get recentSearches() {
+    return this._recentSearches;
   }
 }
 
