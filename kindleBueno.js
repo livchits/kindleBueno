@@ -70,7 +70,17 @@ class Kindle {
 
   get currentEBook() { }
 
-  set currentEBook() { }
+  set currentEBook(eBook) {
+    if (!this._exists(eBook)) {
+      console.warn(`"${eBook.title}" does not exists in library`);
+      return;
+    }
+
+    if (!Ebook.isEqual(eBook, this.currentEBook)) {
+      this._next = this._current;
+      this._current = eBook;
+    }
+  }
 
   filterBy(criteria) { }
 
@@ -108,16 +118,8 @@ class Ebook {
     this.author = author;
     this.genre = genre;
     this.cover = cover;
-    this._read = false;
-    this._readDate = null;
-  }
-
-  get read() {
-    return this._read;
-  }
-
-  get readDate() {
-    return this._readDate;
+    this.read = false;
+    this.readDate = null; 
   }
 
   static isEqual(eBookA, eBookB) {
