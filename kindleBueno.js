@@ -71,7 +71,18 @@ class Kindle {
     this._updateNotReadYetBooks;
   }
 
-  get library() {}
+  get library() {
+    const library = [];
+    this._library.forEach(ebook => library.push(copyEbook(ebook)));
+  }
+  
+  function copyEbook(ebook) {
+    const copy = {};
+    for (const prop in ebook) {
+      if (prop !== '_read' && prop !== '_readDate') copy[prop] = ebook[prop];
+    }
+    return copy;
+  }
 
   get size() {}
 
