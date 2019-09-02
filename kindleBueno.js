@@ -134,10 +134,13 @@ class Ebook {
   }
 
   static isEqual(eBookA, eBookB) {
+    const { title: titleA, author: authorA, genre: genreA } = eBookA;
+    const { title: titleB, author: authorB, genre: genreB } = eBookB;
+    
     return (
-      eBookA.title === eBookB.title &&
-      eBookA.author === eBookB.author &&
-      eBookA.genre === eBookB.genre
+      titleA === titleB && 
+      authorA === authorB && 
+      genreA === genreB
     );
   }
 }
