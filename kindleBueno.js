@@ -72,8 +72,7 @@ class Kindle {
   }
 
   get library() {
-    const library = [];
-    this._library.forEach(ebook => library.push(this.copyEbook(ebook)));
+    return this._library.map(ebook => this.copyEbook(ebook));
   }
   
   copyEbook(ebook) {
