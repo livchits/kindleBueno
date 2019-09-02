@@ -77,11 +77,8 @@ class Kindle {
   }
   
   function copyEbook(ebook) {
-    const copy = {};
-    for (const prop in ebook) {
-      if (prop !== '_read' && prop !== '_readDate') copy[prop] = ebook[prop];
-    }
-    return copy;
+    const {title, author, genre, cover} = ebook;
+    return {title, author, genre, cover};
   }
 
   get size() {}
