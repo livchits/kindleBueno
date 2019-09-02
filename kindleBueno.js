@@ -73,7 +73,9 @@ class Kindle {
 
   get library() {}
 
-  get size() {}
+  get size() {
+    return this.library.length;
+  }
 
   get currentEBook() {}
 
