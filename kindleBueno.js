@@ -71,7 +71,14 @@ class Kindle {
     this._updateNotReadYetBooks;
   }
 
-  get library() {}
+  get library() {
+    return this._library.map(ebook => this._copyEbook(ebook));
+  }
+  
+  _copyEbook(ebook) {
+    const {title, author, genre, cover} = ebook;
+    return {title, author, genre, cover};
+  }
 
   get size() {}
 
