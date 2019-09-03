@@ -80,7 +80,9 @@ class Kindle {
     return {title, author, genre, cover};
   }
 
-  get size() {}
+  get size() {
+    return this._library.length;
+  }
 
   get currentEBook() {}
 
