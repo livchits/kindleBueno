@@ -74,10 +74,10 @@ class Kindle {
   get library() {
     return this._library.map(ebook => this._copyEbook(ebook));
   }
-  
+
   _copyEbook(ebook) {
-    const {title, author, genre, cover} = ebook;
-    return {title, author, genre, cover};
+    const { title, author, genre, cover } = ebook;
+    return { title, author, genre, cover };
   }
 
   get size() {
@@ -116,7 +116,10 @@ class Kindle {
   }
 
   sortBy(criteria) {
-    const sortedArray = [...this._library];
+    return [...this._library]._sortCriteria(criteria);
+  }
+
+  _sortCriteria(criteria) {
     const sortCriteria = (bookA, bookB) =>
       bookA[criteria].localeCompare(bookB[criteria]);
 
@@ -145,11 +148,7 @@ class Ebook {
   static isEqual(eBookA, eBookB) {
     const { title: titleA, author: authorA, genre: genreA } = eBookA;
     const { title: titleB, author: authorB, genre: genreB } = eBookB;
-    
-    return (
-      titleA === titleB && 
-      authorA === authorB && 
-      genreA === genreB
-    );
+
+    return titleA === titleB && authorA === authorB && genreA === genreB;
   }
 }
