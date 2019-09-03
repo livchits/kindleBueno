@@ -116,7 +116,7 @@ class Kindle {
   }
 
   sortBy(criteria) {
-    return [...this._library]._sortCriteria(criteria);
+    return [...this.library]._sortCriteria(criteria);
   }
 
   _sortCriteria(criteria) {
