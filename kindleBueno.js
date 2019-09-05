@@ -111,6 +111,7 @@ class Kindle {
   }
   
   search(keywords) {
+    const searchKeywords = _cleanKeywords(keywords);
     const result = this._library.filter(eBook => {
       eBook.title.toLowerCase().includes(searchKeywords) ||
         eBook.author.toLowerCase().includes(searchKeywords);
