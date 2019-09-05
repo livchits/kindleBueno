@@ -145,24 +145,18 @@ class Ebook {
 }
 
 class Search {
-  constructor() {
-    this._recentSearches = [];
-  }
+  constructor() {}
 
   search(kindle, keywords) {
     const searchKeywords = this._cleanKeywords(keywords);
     
     const result = kindle.library.filter(ebook=> this._titleOrAuthorMatch(ebook, searchKeywords));
 
-    this._updateRecentSearches(searchKeywords);
+    this._updateRecentSearches(kindle, searchKeywords);
 
     return result.length > 0 ? result : console.log("There are no results found in your library");
   }
 
-  get recentSearches() {
-    return this._recentSearches;
-  }
-  
   _cleanKeywords(keywords) {
     return keywords.toLowerCase().trim();
   }
@@ -171,10 +165,9 @@ class Search {
     return ebook.title.toLowerCase().includes(searchKeywords) || ebook.author.toLowerCase().includes(searchKeywords);
   }
 
-  _updateRecentSearches(searchKeywords) {
-    this._recentSearches.push(searchKeywords);
-    if (this._recentSearches.length > 5)
-      this._recentSearches.shift();
+  _updateRecentSearches(kindle, searchKeywords) {
+    kindle._recentSearches.push(searchKeywords);
+    if (kindle._recentSearches.length > 5)
+      kindle._recentSearches.shift();
   }
 }
-
