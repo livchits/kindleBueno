@@ -105,9 +105,12 @@ class Kindle {
   }
 
   filterBy(criteria) {}
-
+    
+  _cleanKeywords(keywords) {
+    return keywords.toLowerCase().trim();
+  }
+  
   search(keywords) {
-    const searchKeywords = keywords.toLowerCase().trim();
     const result = this._library.filter(eBook => {
       eBook.title.toLowerCase().includes(searchKeywords) ||
         eBook.author.toLowerCase().includes(searchKeywords);
