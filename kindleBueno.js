@@ -110,6 +110,11 @@ class Kindle {
     return keywords.toLowerCase().trim();
   }
   
+  _titleOrAuthorMatch(ebook, searchKeywords) {
+    return ebook.title.toLowerCase().includes(searchKeywords) ||
+        ebook.author.toLowerCase().includes(searchKeywords);
+  }
+  
   search(keywords) {
     const searchKeywords = this._cleanKeywords(keywords);
     const result = this._library.filter(eBook => {
