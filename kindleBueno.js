@@ -84,7 +84,9 @@ class Kindle {
     return this._library.length;
   }
 
-  get currentEBook() {}
+  get currentEBook() {
+    return this._copyEbook(this._current);
+  }
 
   set currentEBook(eBook) {
     if (!this._exists(eBook)) {
