@@ -115,12 +115,14 @@ class Kindle {
         ebook.author.toLowerCase().includes(searchKeywords);
   }
   
+  _updateRecentSearches(searchKeywords) {
+    this._recentSearches.push(searchKeywords);
+    if (this._recentSearches.length > 5) this._recentSearches.shift();
+  }
+  
   search(keywords) {
     const searchKeywords = this._cleanKeywords(keywords);
     const result = this.library.filter(ebook => this._titleOrAuthorMatch(ebook, searchKeywords));
-
-    this._recentSearches.push(searchKeywords);
-    if (this._recentSearches.length > 5) this._recentSearches.shift();
 
     return result.length > 0
       ? result
