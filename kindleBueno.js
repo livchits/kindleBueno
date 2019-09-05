@@ -64,11 +64,15 @@ class Kindle {
     this._current._readDate = Date.now();
     this._last = this._current;
     this._current = this._next;
-    this._next = this.library.find(
-      eBooK => eBooK._read === false && !Ebook.isEqual(eBooK, this._current)
-    );
+    this._next = _updateNextEbook();
     this._updateReadBooks;
     this._updateNotReadYetBooks;
+  }
+
+  _updateNextEbook() {
+    return this._library.find(
+      eBooK => eBooK._read === false && !Ebook.isEqual(eBooK, this._current)
+    );
   }
 
   get library() {
