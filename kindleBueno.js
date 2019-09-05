@@ -123,6 +123,8 @@ class Kindle {
   search(keywords) {
     const searchKeywords = this._cleanKeywords(keywords);
     const result = this.library.filter(ebook => this._titleOrAuthorMatch(ebook, searchKeywords));
+    
+    _updateRecentSearches(searchKeywords);
 
     return result.length > 0
       ? result
