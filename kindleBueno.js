@@ -106,31 +106,6 @@ class Kindle {
 
   filterBy(criteria) {}
     
-  _cleanKeywords(keywords) {
-    return keywords.toLowerCase().trim();
-  }
-  
-  _titleOrAuthorMatch(ebook, searchKeywords) {
-    return ebook.title.toLowerCase().includes(searchKeywords) ||
-        ebook.author.toLowerCase().includes(searchKeywords);
-  }
-  
-  _updateRecentSearches(searchKeywords) {
-    this._recentSearches.push(searchKeywords);
-    if (this._recentSearches.length > 5) this._recentSearches.shift();
-  }
-  
-  search(keywords) {
-    const searchKeywords = this._cleanKeywords(keywords);
-    const result = this.library.filter(ebook => this._titleOrAuthorMatch(ebook, searchKeywords));
-    
-    _updateRecentSearches(searchKeywords);
-
-    return result.length > 0
-      ? result
-      : console.log("There are no results found in your library");
-  }
-
   sortBy(criteria) {
     return [...this.library]._sortCriteria(criteria);
   }
@@ -168,3 +143,38 @@ class Ebook {
     return titleA === titleB && authorA === authorB && genreA === genreB;
   }
 }
+
+class Search {
+  constructor() {
+    this._recentSearches = [];
+  }
+
+  search(kindle, keywords) {
+    const searchKeywords = this._cleanKeywords(keywords);
+    
+    const result = kindle.library.filter(ebook=> this._titleOrAuthorMatch(ebook, searchKeywords));
+
+    this._updateRecentSearches(searchKeywords);
+
+    return result.length > 0 ? result : console.log("There are no results found in your library");
+  }
+
+  get recentSearches() {
+    return this._recentSearches;
+  }
+  
+  _cleanKeywords(keywords) {
+    return keywords.toLowerCase().trim();
+  }
+
+  _titleOrAuthorMatch(ebook, searchKeywords) {
+    return ebook.title.toLowerCase().includes(searchKeywords) || ebook.author.toLowerCase().includes(searchKeywords);
+  }
+
+  _updateRecentSearches(searchKeywords) {
+    this._recentSearches.push(searchKeywords);
+    if (this._recentSearches.length > 5)
+      this._recentSearches.shift();
+  }
+}
+
