@@ -91,12 +91,16 @@ class Kindle {
 
   filterBy(criteria) {    
     if (criteria === 'read'){
-	return this._library.filter(eBook=>eBook.read);
+        const result = this._library.filter(eBook=>eBook.read);
+        return result.length > 0
+        ? result
+        : console.warn('Criteria must be either "You have no items that match the selected filters"');
     }else if(criteria === 'unread'){
-	return this._library.filter(eBook=>!eBook.read);
-    }else{
-	return console.warn('Criteria must be either "You have no items that match the selected filters"');
-   }
+	    const result = this._library.filter(eBook=>!eBook.read);
+            return result.length > 0
+            ? result
+            : console.warn('Criteria must be either "You have no items that match the selected filters"');
+    }
 }
 
   search(keywords) {
