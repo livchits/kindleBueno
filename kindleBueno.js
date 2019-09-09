@@ -173,8 +173,7 @@ class Search {
   }
 
   _updateRecentSearches(kindle, searchKeywords) {
-    kindle._recentSearches.push(searchKeywords);
-    if (kindle._recentSearches.length > 5) kindle._recentSearches.shift();
+    kindle._recentSearches.addToBuffer(searchKeywords);
   }
 }
 
