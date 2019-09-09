@@ -6,7 +6,7 @@ class Kindle {
     this._next = null;
     this._last = null;
     this._library = [];
-    this._recentSearches = [];
+    this._recentSearches = new Buffer(5);
   }
 
   add(eBook) {
@@ -106,21 +106,6 @@ class Kindle {
 
   filterBy(criteria) {}
 
-  search(keywords) {
-    const searchKeywords = keywords.toLowerCase().trim();
-    const result = this._library.filter(eBook => {
-      eBook.title.toLowerCase().includes(searchKeywords) ||
-        eBook.author.toLowerCase().includes(searchKeywords);
-    });
-
-    this._recentSearches.push(searchKeywords);
-    if (this._recentSearches.length > 5) this._recentSearches.shift();
-
-    return result.length > 0
-      ? result
-      : console.log("There are no results found in your library");
-  }
-
   sortBy(criteria) {
     return [...this.library]._sortCriteria(criteria);
   }
@@ -137,7 +122,7 @@ class Kindle {
   }
 
   get recentSearches() {
-    return this._recentSearches;
+    return this._recentSearches.buffer;
   }
 }
 
@@ -156,5 +141,55 @@ class Ebook {
     const { title: titleB, author: authorB, genre: genreB } = eBookB;
 
     return titleA === titleB && authorA === authorB && genreA === genreB;
+  }
+}
+
+class Search {
+  constructor() {}
+
+  search(kindle, keywords) {
+    const searchKeywords = this._cleanKeywords(keywords);
+
+    const result = kindle.library.filter(ebook =>
+      this._titleOrAuthorMatch(ebook, searchKeywords)
+    );
+
+    this._updateRecentSearches(kindle, searchKeywords);
+
+    return result.length > 0
+      ? result
+      : console.log("There are no results found in your library");
+  }
+
+  _cleanKeywords(keywords) {
+    return keywords.toLowerCase().trim();
+  }
+
+  _titleOrAuthorMatch(ebook, searchKeywords) {
+    return (
+      ebook.title.toLowerCase().includes(searchKeywords) ||
+      ebook.author.toLowerCase().includes(searchKeywords)
+    );
+  }
+
+  _updateRecentSearches(kindle, searchKeywords) {
+    kindle._recentSearches.addToBuffer(searchKeywords);
+  }
+}
+
+class Buffer {
+  constructor(capacity) {
+    this.buffer = new Array(capacity);
+    this.next = 0;
+  }
+
+  addToBuffer(data) {
+    if (this.next < this.buffer.length) {
+      this.buffer[this.next] = data;
+      this.next++;
+    } else {
+      this.buffer[0] = data;
+      this.next = 1;
+    }
   }
 }
