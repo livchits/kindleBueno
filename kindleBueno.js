@@ -180,12 +180,11 @@ class Search {
 class Buffer {
   constructor(capacity) {
     this.buffer = new Array(capacity);
-    this.capacity = capacity;
     this.next = 0;
   }
 
   addToBuffer(data) {
-    if (this.next < this.capacity) {
+    if (this.next < this.buffer.length) {
       this.buffer[this.next] = data;
       this.next++;
     } else {
