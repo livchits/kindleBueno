@@ -67,7 +67,7 @@ export default class Kindle {
     this._current._readDate = Date.now();
     this._last = this._current;
     this._current = this._next;
-    this._next = _updateNextEbook();
+    this._next = this._updateNextEbook();
     this._updateReadBooks;
     this._updateNotReadYetBooks;
   }
