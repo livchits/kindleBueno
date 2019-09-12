@@ -1,4 +1,5 @@
 import Buffer from "./Buffer";
+import Ebook from "./Ebook";
 
 export default class Kindle {
   constructor() {
