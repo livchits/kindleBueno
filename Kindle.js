@@ -1,5 +1,5 @@
-import Buffer from "./Buffer";
-import Ebook from "./Ebook";
+import Buffer from "./Buffer.js";
+import Ebook from "./Ebook.js";
 
 export default class Kindle {
   constructor() {
