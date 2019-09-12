@@ -1,3 +1,5 @@
+import Buffer from "./Buffer";
+
 export default class Kindle {
   constructor() {
     this.readBooks = 0;
