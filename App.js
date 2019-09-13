@@ -58,9 +58,9 @@ console.log("---------------------------------------");
 console.log(`Finish current book: "${kindle._current.title}"`);
 kindle.finishCurrentBook();
 
-console.log("--------------- SEARCH ---------------");
-kindle.search("Yann Tiersen");
-kindle.search("Futuro");
+// console.log("--------------- SEARCH ---------------");
+// kindle.search("Yann Tiersen");
+// kindle.search("Futuro");
 
 console.log("--------------- SORT BY ---------------");
 console.log("COVER:");
@@ -70,7 +70,9 @@ console.log("AUTHOR:");
 kindle.sortBy("author");
 
 console.log("--------------- EQUAL ---------------");
-Ebook.isEqual(new Ebook(ebooks[0]), new Ebook(ebooks[1]));
+console.log(ebooks[0]);
+console.log(ebooks[1]);
+console.log(Ebook.isEqual(new Ebook(ebooks[0]), new Ebook(ebooks[1])));
 
 console.log("--------------- GET CURRENT EBOOK ---------------");
 console.log(kindle.currentEBook);
@@ -91,11 +93,11 @@ const newEbook = new Ebook({
   cover: "https://i.imgur.com/RaQbgQm.jpg",
 });
 console.log(newEbook);
-
 kindle.add(newEbook);
 
 console.log("--------------- SET EBOOK ---------------");
 kindle.currentEBook = newEbook;
+console.log(kindle.currentEBook);
 
 //kindle1.sortBy('title');
 
