@@ -110,15 +110,11 @@ export default class Kindle {
   filterBy(criteria) {}
 
   sortBy(criteria) {
-    return [...this.library]._sortCriteria(criteria);
-  }
-
-  _sortCriteria(criteria) {
     const sortCriteria = (bookA, bookB) =>
       bookA[criteria].localeCompare(bookB[criteria]);
 
     if (criteria === "author" || criteria === "title") {
-      return sortedArray.sort(sortCriteria);
+      return [...this.library].sort(sortCriteria);
     }
 
     return console.warn('Criteria must be either "author" or "title"');
