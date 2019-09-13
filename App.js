@@ -2,32 +2,100 @@ import Ebook from "./Ebook.js";
 import Kindle from "./Kindle.js";
 import Search from "./Search.js";
 
-const book1 = new Ebook({
-  title: "Drive",
-  genre: "Psychology",
-  author: "Daniel H. Pink",
-  cover: "https://i.imgur.com/B3XpOxl.jpg",
+const kindle = new Kindle();
+
+const ebooks = [
+  {
+    title: "Drive",
+    genre: "Psychology",
+    author: "Daniel H. Pink",
+    cover: "https://i.imgur.com/B3XpOxl.jpg",
+  },
+  {
+    title: "Futuro Pop",
+    genre: "Science Fiction",
+    author: "Luciano Banchero",
+    cover: "https://i.imgur.com/uYOy55M.jpg",
+  },
+  {
+    title: "The Lord of the Rings - The Fellowship of the Ring",
+    genre: "Fantasy",
+    author: "J. R. R. Tolkien",
+    cover: "https://i.imgur.com/OwMUnQu.jpg",
+  },
+  {
+    title: "The Principles Of Object-oriented Javascript",
+    genre: "Programming",
+    author: "Nicholas C. Zakas",
+    cover: "https://i.imgur.com/Iktw1ps.jpg",
+  },
+  {
+    title: "Harry Potter and the Philosopher's Stone",
+    genre: "Fantasy",
+    author: "J. K. Rowling",
+    cover: "https://i.imgur.com/PH1aXaP.jpg",
+  },
+  {
+    title: "Eloquent JavaScript",
+    genre: "Programming",
+    author: "Marijn Haverbeke",
+    cover: "https://i.imgur.com/F4NQlvx.jpg",
+  },
+];
+
+ebooks.forEach(ebook => {
+  const newEbook = new Ebook(ebook);
+  kindle.add(newEbook);
 });
 
-const book2 = new Ebook({
-  title: "Futuro Pop",
-  genre: "Science Fiction",
-  author: "Luciano Banchero",
-  cover: "https://i.imgur.com/uYOy55M.jpg",
+console.log("--------------- LIBRARY ---------------");
+console.log(kindle.library);
+
+console.log("--------------- LIBRARY SIZE ---------------");
+console.log(kindle.size);
+
+console.log("---------------------------------------");
+console.log(`Finish current book: "${kindle._current.title}"`);
+kindle.finishCurrentBook();
+
+console.log("--------------- SEARCH ---------------");
+kindle.search("Yann Tiersen");
+kindle.search("Futuro");
+
+console.log("--------------- SORT BY ---------------");
+console.log("COVER:");
+kindle.sortBy("cover");
+
+console.log("AUTHOR:");
+kindle.sortBy("author");
+
+console.log("--------------- EQUAL ---------------");
+Ebook.isEqual(new Ebook(ebooks[0]), new Ebook(ebooks[1]));
+
+console.log("--------------- GET CURRENT EBOOK ---------------");
+console.log(kindle.currentEBook);
+
+console.log("--------------- SET EBOOK ---------------");
+kindle.currentEBook = new Ebook({
+  title: "If On a Winter's Night A Traveller",
+  genre: "Fiction",
+  author: "Italo Calvino",
+  cover: "https://i.imgur.com/RaQbgQm.jpg",
 });
 
-const book3 = new Ebook({
-  title: "Arive",
-  genre: "Psychology",
-  author: "Daniel H. Pink",
-  cover: "https://i.imgur.com/B3XpOxl.jpg",
+console.log("--------------- ADD EBOOK ---------------");
+const newEbook = new Ebook({
+  title: "If On a Winter's Night A Traveller",
+  genre: "Fiction",
+  author: "Italo Calvino",
+  cover: "https://i.imgur.com/RaQbgQm.jpg",
 });
+console.log(newEbook);
 
-const kindle1 = new Kindle();
+kindle.add(newEbook);
 
-kindle1.add(book1);
-kindle1.add(book2);
-kindle1.add(book3);
+console.log("--------------- SET EBOOK ---------------");
+kindle.currentEBook = newEbook;
 
 //kindle1.sortBy('title');
 
@@ -43,7 +111,3 @@ kindle1.add(book3);
 })*/
 
 //Ebook.isEqual(book1, book1);
-
-console.log(kindle1._library);
-console.log(kindle1.library);
-console.log(kindle1.size);
