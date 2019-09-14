@@ -1,5 +1,6 @@
-import Buffer from "./Buffer.js";
 import Ebook from "./Ebook.js";
+import Buffer from "./Buffer.js";
+import Search from "./Search.js";
 
 export default class Kindle {
   constructor() {
@@ -118,6 +119,10 @@ export default class Kindle {
     }
 
     return console.warn('Criteria must be either "author" or "title"');
+  }
+  
+  search(keywords) {
+    return new Search().search(this, keywords);
   }
 
   get recentSearches() {
