@@ -1,5 +1,5 @@
-import Buffer from "./Buffer.js";
 import Ebook from "./Ebook.js";
+import Buffer from "./Buffer.js";
 import Search from "./Search.js";
 
 export default class Kindle {
