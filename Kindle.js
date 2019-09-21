@@ -19,11 +19,11 @@ export default class Kindle {
       return;
     }
 
-    if (this._library.length === 0) {
+    if (!this._current) {
       this._current = eBook;
     }
 
-    if (this._library.length === 1) {
+    if (!this._next && this._current) {
       this._next = eBook;
     }
 
@@ -120,7 +120,7 @@ export default class Kindle {
 
     return console.warn('Criteria must be either "author" or "title"');
   }
-  
+
   search(keywords) {
     return new Search().search(this, keywords);
   }
