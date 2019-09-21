@@ -126,6 +126,6 @@ export default class Kindle {
   }
 
   get recentSearches() {
-    return this._recentSearches.buffer;
+    return this._recentSearches.content;
   }
 }
