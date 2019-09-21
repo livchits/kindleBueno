@@ -29,23 +29,11 @@ export default class Kindle {
 
     this._library.push(eBook);
 
-    this._updateNotReadYetBooks();
+    this.notReadYetBooks++;
   }
 
   _exists(eBook) {
     return this._library.some(kindleBook => Ebook.isEqual(kindleBook, eBook));
-  }
-
-  _updateNotReadYetBooks() {
-    this.notReadYetBooks = this._library.reduce(
-      (totalBooksNotRead, currentBook) => {
-        if (!currentBook.read) {
-          totalBooksNotRead++;
-        }
-        return totalBooksNotRead;
-      },
-      0
-    );
   }
 
   _updateReadBooks() {
@@ -70,7 +58,7 @@ export default class Kindle {
     this._current = this._next;
     this._next = this._updateNextEbook();
     this._updateReadBooks;
-    this._updateNotReadYetBooks;
+    this.notReadYetBooks--;
   }
 
   _updateNextEbook() {
@@ -120,7 +108,7 @@ export default class Kindle {
 
     return console.warn('Criteria must be either "author" or "title"');
   }
-  
+
   search(keywords) {
     return new Search().search(this, keywords);
   }
