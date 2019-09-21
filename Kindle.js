@@ -120,12 +120,12 @@ export default class Kindle {
 
     return console.warn('Criteria must be either "author" or "title"');
   }
-  
+
   search(keywords) {
     return new Search().search(this, keywords);
   }
 
   get recentSearches() {
-    return this._recentSearches.buffer;
+    return this._recentSearches.content;
   }
 }
