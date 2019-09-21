@@ -75,7 +75,7 @@ export default class Kindle {
 
   _updateNextEbook() {
     return this._library.find(
-      eBooK => eBooK._read === false && !Ebook.isEqual(eBooK, this._current)
+      eBooK => !eBooK._read && !Ebook.isEqual(eBooK, this._current)
     );
   }
 
