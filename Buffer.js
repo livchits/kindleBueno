@@ -13,4 +13,8 @@ export default class Buffer {
       this.next = 1;
     }
   }
+
+  get content() {
+    return this._content;
+  }
 }
