@@ -120,9 +120,34 @@ export default class Kindle {
 
     return console.warn('Criteria must be either "author" or "title"');
   }
-  
+
   search(keywords) {
-    return new Search().search(this, keywords);
+    const searchKeywords = this._cleanKeywords(keywords);
+
+    const result = this.library.filter(ebook =>
+      this._titleOrAuthorMatch(ebook, searchKeywords)
+    );
+
+    this._updateRecentSearches(this, searchKeywords);
+
+    return result.length > 0
+      ? result
+      : console.log("There are no results found in your library");
+  }
+
+  _cleanKeywords(keywords) {
+    return keywords.toLowerCase().trim();
+  }
+
+  _titleOrAuthorMatch(ebook, searchKeywords) {
+    return (
+      ebook.title.toLowerCase().includes(searchKeywords) ||
+      ebook.author.toLowerCase().includes(searchKeywords)
+    );
+  }
+
+  _updateRecentSearches(kindle, searchKeywords) {
+    kindle._recentSearches.addToBuffer(searchKeywords);
   }
 
   get recentSearches() {
