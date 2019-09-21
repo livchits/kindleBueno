@@ -127,7 +127,7 @@ export default class Kindle {
       this._titleOrAuthorMatch(ebook, searchKeywords)
     );
 
-    this._updateRecentSearches(this, searchKeywords);
+    this._updateRecentSearches(searchKeywords);
 
     return result.length > 0
       ? result
@@ -145,8 +145,8 @@ export default class Kindle {
     );
   }
 
-  _updateRecentSearches(kindle, searchKeywords) {
-    kindle._recentSearches.addToBuffer(searchKeywords);
+  _updateRecentSearches(searchKeywords) {
+    this._recentSearches.addToBuffer(searchKeywords);
   }
 
   get recentSearches() {
