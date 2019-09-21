@@ -75,7 +75,7 @@ export default class Kindle {
 
   _updateNextEbook() {
     return this._library.find(
-      eBooK => eBooK._read === false && !Ebook.isEqual(eBooK, this._current)
+      eBooK => !eBooK._read && !Ebook.isEqual(eBooK, this._current)
     );
   }
 
@@ -120,7 +120,7 @@ export default class Kindle {
 
     return console.warn('Criteria must be either "author" or "title"');
   }
-  
+
   search(keywords) {
     return new Search().search(this, keywords);
   }
