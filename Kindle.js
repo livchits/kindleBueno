@@ -23,7 +23,7 @@ export default class Kindle {
       this._current = eBook;
     }
 
-    if (this._library.length === 1) {
+    if (!this._next && this._current) {
       this._next = eBook;
     }
 
