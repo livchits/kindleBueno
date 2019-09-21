@@ -1,5 +1,6 @@
 import Ebook from "./Ebook.js";
 import Buffer from "./Buffer.js";
+import { cleanKeywords, titleOrAuthorMatch } from "./Utils";
 
 export default class Kindle {
   constructor() {
@@ -121,10 +122,10 @@ export default class Kindle {
   }
 
   search(keywords) {
-    const searchKeywords = this._cleanKeywords(keywords);
+    const searchKeywords = cleanKeywords(keywords);
 
     const result = this.library.filter(ebook =>
-      this._titleOrAuthorMatch(ebook, searchKeywords)
+      titleOrAuthorMatch(ebook, searchKeywords)
     );
 
     this._updateRecentSearches(searchKeywords);
@@ -132,17 +133,6 @@ export default class Kindle {
     return result.length > 0
       ? result
       : console.log("There are no results found in your library");
-  }
-
-  _cleanKeywords(keywords) {
-    return keywords.toLowerCase().trim();
-  }
-
-  _titleOrAuthorMatch(ebook, searchKeywords) {
-    return (
-      ebook.title.toLowerCase().includes(searchKeywords) ||
-      ebook.author.toLowerCase().includes(searchKeywords)
-    );
   }
 
   _updateRecentSearches(searchKeywords) {
