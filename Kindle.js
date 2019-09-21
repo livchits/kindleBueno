@@ -29,32 +29,11 @@ export default class Kindle {
 
     this._library.push(eBook);
 
-    this._updateNotReadYetBooks();
+    this.notReadYetBooks++;
   }
 
   _exists(eBook) {
     return this._library.some(kindleBook => Ebook.isEqual(kindleBook, eBook));
-  }
-
-  _updateNotReadYetBooks() {
-    this.notReadYetBooks = this._library.reduce(
-      (totalBooksNotRead, currentBook) => {
-        if (!currentBook.read) {
-          totalBooksNotRead++;
-        }
-        return totalBooksNotRead;
-      },
-      0
-    );
-  }
-
-  _updateReadBooks() {
-    this.readBooks = this._library.reduce((totalBooksRead, currentBook) => {
-      if (currentBook._read) {
-        totalBooksRead++;
-      }
-      return totalBooksRead;
-    }, 0);
   }
 
   finishCurrentBook() {
@@ -69,8 +48,8 @@ export default class Kindle {
     this._last = this._current;
     this._current = this._next;
     this._next = this._updateNextEbook();
-    this._updateReadBooks;
-    this._updateNotReadYetBooks;
+    this.readBooks++;
+    this.notReadYetBooks--;
   }
 
   _updateNextEbook() {
