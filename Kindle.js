@@ -1,6 +1,6 @@
 import Ebook from "./Ebook.js";
 import Buffer from "./Buffer.js";
-import { cleanKeywords, titleOrAuthorMatch } from "./Utils";
+import { cleanKeywords, titleOrAuthorMatch } from "./Utils.js";
 
 export default class Kindle {
   constructor() {
@@ -87,7 +87,14 @@ export default class Kindle {
     }
   }
 
-  filterBy(criteria) {}
+  filterBy(criteria) {
+    const filteredLibrary = this.library.filter(eBook =>
+      criteria === "read" ? eBook.read : !eBook.read
+    );
+    return filteredLibrary.length > 0
+      ? filteredLibrary
+      : console.warn("You have no items that match the selected filters");
+  }
 
   sortBy(criteria) {
     const sortCriteria = (bookA, bookB) =>
