@@ -1,6 +1,6 @@
 import Ebook from "./Ebook.js";
 import Buffer from "./Buffer.js";
-import { cleanKeywords, titleOrAuthorMatch } from "./Utils";
+import { cleanKeywords, titleOrAuthorMatch } from "./Utils.js";
 
 export default class Kindle {
   constructor() {
